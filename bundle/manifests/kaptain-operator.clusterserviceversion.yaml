@@ -28,7 +28,7 @@ metadata:
     capabilities: Basic Install
     operators.operatorframework.io/builder: operator-sdk-v1.8.0+git
     operators.operatorframework.io/project_layout: ansible.sdk.operatorframework.io/v1
-  name: kaptain-operator.v0.0.2
+  name: kaptain-operator.v0.0.3
   namespace: placeholder
 spec:
   apiservicedefinitions: {}
@@ -177,7 +177,7 @@ spec:
                 env:
                 - name: ANSIBLE_GATHERING
                   value: explicit
-                image: quay.io/startx/kaptain-operator:0.0.2
+                image: quay.io/startx/kaptain-operator:0.0.3
                 livenessProbe:
                   httpGet:
                     path: /healthz
@@ -270,5 +270,5 @@ spec:
   provider:
     name: STARTX
     url: https://github.com/startxfr/kaptain-operator
-  replaces: kaptain-operator.v0.0.1
-  version: 0.0.2
+  replaces: kaptain-operator.v0.0.2
+  version: 0.0.3
