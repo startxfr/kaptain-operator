@@ -1,4 +1,5 @@
 ## Append samples you want in your CSV to this file as resources ##
 resources:
 - kaptain_v1alpha1_kaptainservice.yaml
+- kaptain_v1alpha1_kaptainapp.yaml
 #+kubebuilder:scaffold:manifestskustomizesamples

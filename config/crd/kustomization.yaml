@@ -3,4 +3,5 @@
 # It should be run by config/default
 resources:
 - bases/kaptain.startx.fr_kaptainservices.yaml
+- bases/kaptain.startx.fr_kaptainapps.yaml
 #+kubebuilder:scaffold:crdkustomizeresource

@@ -4,4 +4,8 @@
   group: kaptain.startx.fr
   kind: KaptainService
   role: kaptainservice
+- version: v1alpha1
+  group: kaptain.startx.fr
+  kind: KaptainApp
+  role: kaptainapp
 #+kubebuilder:scaffold:watch
