@@ -1,0 +1,47 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: ClusterServiceVersion
+metadata:
+  annotations:
+    alm-examples: '[]'
+    capabilities: Basic Install
+  name: kaptain-operator.v0.0.0
+  namespace: placeholder
+spec:
+  apiservicedefinitions: {}
+  customresourcedefinitions: {}
+  description: Operator to configure a full cluster in the gitops way.
+  displayName: STARTX Kaptain operator
+  icon:
+  - base64data: ""
+    mediatype: ""
+  install:
+    spec:
+      deployments: null
+    strategy: ""
+  installModes:
+  - supported: false
+    type: OwnNamespace
+  - supported: false
+    type: SingleNamespace
+  - supported: false
+    type: MultiNamespace
+  - supported: true
+    type: AllNamespaces
+  keywords:
+  - gitops
+  - cluster
+  - config
+  - service
+  - application
+  - lifecycle
+  links:
+  - name: Kaptain Operator
+    url: https://kaptain-operator.domain
+  maintainers:
+  - email: dev@startx.fr
+    name: startx
+  maturity: alpha
+  provider:
+    name: STARTX
+    url: https://github.com/startxfr/kaptain-operator
+  version: 0.0.0
