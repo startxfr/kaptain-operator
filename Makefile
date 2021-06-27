@@ -36,7 +36,7 @@ IMAGE_TAG_BASE ?= startx.fr/kaptain-operator
 BUNDLE_IMG ?= $(IMAGE_TAG_BASE)-bundle:v$(VERSION)
 
 # Image URL to use all building/pushing image targets
-IMG ?= controller:latest
+IMG ?= $(IMAGE_TAG_BASE):$(VERSION)
 
 all: docker-build
 
