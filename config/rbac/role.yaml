@@ -37,4 +37,21 @@ rules:
       - patch
       - update
       - watch
+  ##
+  ## Rules for kaptain.startx.fr/v1alpha1, Kind: KaptainService
+  ##
+  - apiGroups:
+      - kaptain.startx.fr
+    resources:
+      - kaptainservices
+      - kaptainservices/status
+      - kaptainservices/finalizers
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
 #+kubebuilder:scaffold:rules
