@@ -137,5 +137,5 @@ spec:
   provider:
     name: STARTX
     url: https://github.com/startxfr/kaptain-operator
-  replaces: kaptain-operator.v0.0.0
-  version: 0.0.1
+  replaces: kaptain-operator.v0.0.1
+  version: 0.0.2
