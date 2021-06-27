@@ -1,0 +1,97 @@
+#!/bin/bash
+PROJECT_PATH=`dirname $(readlink -f $0)`
+
+# menu for usage command
+function menuUsage {
+cat <<EOF
+
+This client helps you manage the lifecycle of the kaptain operator.
+
+Usage:
+  ./sx-operator <action> [flags]
+
+- Actions  :
+  - commit                   commit a change to the current branch
+  - build operator           Build the kaptain operator
+  - build bundle             Build the kaptain operator bundle
+  - build catalog            Build the kaptain operator catalog
+  - build all                Build all the kaptain operator components (operator, bundle and OLM catalog)
+  - publish operator         Build and publish the kaptain operator
+  - publish bundle           Build and publish the kaptain operator bundle
+  - publish catalog          Build and publish the kaptain operator catalog
+  - publish all              Build and publish all the kaptain operator components (operator, bundle and OLM catalog)
+  - deploy                   Deploy the OLM catalog and a subscription (with operatorGroup) to test the operator availability
+
+- Examples  :
+  ./sx-operator commit      Commit a change to the current branch
+  ./sx-operator build all   Build all the kaptain operator components (operator, bundle and OLM catalog)
+  ./sx-operator publish all Build and publish all the kaptain operator components (operator, bundle and OLM catalog)
+  ./sx-operator deploy      Deploy the OLM catalog and a subscription (with operatorGroup) to test the operator availability
+
+EOF
+}
+
+
+
+if [[ "$1" != "" ]]; then
+    case $1 in
+        commit)
+            git add $PROJECT_PATH
+            git commit
+        ;;
+        deploy)
+            oc apply -f load-catalog.yaml
+        ;;
+        build)
+            case $2 in
+                operator)
+                    make docker-build
+                    git add $PROJECT_PATH
+                    git commit $PROJECT_PATH
+                ;;
+                bundle)
+                    make bundle bundle-build
+                    git add $PROJECT_PATH
+                    git commit $PROJECT_PATH
+                ;;
+                catalog)
+                    make catalog-build
+                    git add $PROJECT_PATH
+                    git commit $PROJECT_PATH
+                ;;
+                *)
+                    make docker-build bundle bundle-build catalog-build
+                    git add $PROJECT_PATH
+                    git commit $PROJECT_PATH
+                ;;
+            esac
+        ;;
+        publish)
+            case $2 in
+                operator)
+                    make docker-build docker-push
+                    git add $PROJECT_PATH
+                    git commit $PROJECT_PATH
+                ;;
+                bundle)
+                    make bundle bundle-build bundle-push
+                    git add $PROJECT_PATH
+                    git commit $PROJECT_PATH
+                ;;
+                catalog)
+                    make catalog-build catalog-push
+                    git add $PROJECT_PATH
+                    git commit $PROJECT_PATH
+                ;;
+                *)
+                    make docker-build docker-push bundle bundle-build bundle-push catalog-build catalog-push
+                    git add $PROJECT_PATH
+                    git commit $PROJECT_PATH
+                ;;
+            esac
+        ;;
+        *)  menuUsage;;
+    esac
+else
+    menuUsage
+fi
