@@ -1,0 +1,24 @@
+# permissions for end users to edit kaptainservices.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: kaptainservice-editor-role
+rules:
+- apiGroups:
+  - kaptain.startx.fr
+  resources:
+  - kaptainservices
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - kaptain.startx.fr
+  resources:
+  - kaptainservices/status
+  verbs:
+  - get
